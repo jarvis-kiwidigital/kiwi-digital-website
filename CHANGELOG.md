@@ -2,6 +2,42 @@
 
 All notable changes to the Kiwi Digital website.
 
+## [2026-02-15 v2] - Favicon Generation & OG Image
+
+### Added
+- **Multi-size Favicons**: Generated proper favicon set from kiwi bird logo
+  - `favicon.ico` (32x32) - Dark version for browser tabs
+  - `favicon-16x16.png` - Small icon
+  - `favicon-32x32.png` - Standard icon
+  - `apple-touch-icon.png` (180x180) - iOS home screen (teal background)
+  - `android-chrome-192x192.png` - Android icon (teal background)
+  - `android-chrome-512x512.png` - Android high-res icon (teal background)
+  
+- **Web App Manifest**: `public/site.webmanifest`
+  - PWA support with proper icons and theme colors
+  - Brand color (#4ecdc4) and dark background (#0a0a0f)
+
+- **Open Graph Image**: Custom 1200x630 social sharing image
+  - Dark background with kiwi logo
+  - "KiwiDigital" branding and tagline
+  - Gradient accents matching site theme
+  - Proper OG meta tags with full URL and dimensions
+
+### Changed
+- **Layout.astro Head Section**: Updated with comprehensive favicon references
+  - Multiple sizes for cross-platform compatibility
+  - Web manifest link
+  - Theme color meta tag
+  - Full URL for og:image with width/height metadata
+
+### Technical
+- Used `sips` (macOS) for favicon generation from source logos
+- Generated OG image with Playwright screenshot from HTML template
+- All favicons properly optimized and sized
+- Docker image rebuilt and container restarted
+
+---
+
 ## [2026-02-15] - Global Expansion & Product Showcase Update
 
 ### Added
