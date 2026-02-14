@@ -97,6 +97,45 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         (hero as HTMLElement).style.transform = `translateY(${scrolled * 0.3}px)`;
       }, { passive: true });
     }
+
+    // Animated counters
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const target = el.dataset.count || el.textContent || '0';
+            const numMatch = target.match(/[\d.]+/);
+            if (!numMatch) return;
+            const end = parseFloat(numMatch[0]);
+            const prefix = target.slice(0, target.indexOf(numMatch[0]));
+            const suffix = target.slice(target.indexOf(numMatch[0]) + numMatch[0].length);
+            const duration = 1500;
+            const start = performance.now();
+            const isFloat = numMatch[0].includes('.');
+
+            function tick(now: number) {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+              const current = isFloat ? (eased * end).toFixed(1) : Math.floor(eased * end);
+              el.textContent = `${prefix}${current}${suffix}`;
+              if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+            counterObserver.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    document.querySelectorAll('[data-count]').forEach((el) => {
+      counterObserver.observe(el);
+    });
+
+    // Page load animation
+    document.documentElement.classList.add('loaded');
   </script>
 
   <style>
@@ -126,6 +165,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     }
     [data-animate="right"].is-visible {
       transform: translateX(0);
+    }
+
+    /* Page load fade in */
+    html:not(.loaded) body {
+      opacity: 0;
+    }
+    html.loaded body {
+      opacity: 1;
+      transition: opacity 0.4s ease-out;
+    }
+
+    /* Smooth details/summary transitions */
+    details[open] summary ~ * {
+      animation: detailsOpen 0.3s ease-out;
+    }
+    @keyframes detailsOpen {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </body>
