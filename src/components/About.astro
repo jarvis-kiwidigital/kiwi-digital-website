@@ -1,0 +1,100 @@
+---
+const values = [
+  {
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>`,
+    title: 'Ship Fast, Ship Right',
+    text: 'We use AI-accelerated development to deliver in weeks, not months. But speed never compromises quality.',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>`,
+    title: 'NZ-First Compliance',
+    text: 'Privacy Act, employment law, H&S regulations — every product we build has NZ compliance wired in from the start.',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>`,
+    title: 'Partner, Not Vendor',
+    text: "We embed in your business. We learn your processes, your industry, your pain points — then we solve them together.",
+  },
+];
+---
+
+<section id="about" class="section-padding relative overflow-hidden">
+  <!-- Background accent -->
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-kiwi-500/3 blur-[150px]"></div>
+
+  <div class="container-narrow relative">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <!-- Left: Text -->
+      <div data-animate="left">
+        <p class="text-kiwi-400 font-mono text-sm tracking-wider uppercase mb-4">About Kiwi Digital</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-6">
+          A decade of building.<br />
+          <span class="gradient-text">Now with AI.</span>
+        </h2>
+
+        <div class="space-y-4 text-gray-400 leading-relaxed mb-10">
+          <p>
+            Founded in 2013, Kiwi Digital has spent over a decade helping New Zealand businesses
+            get more from their technology. We started with workflow automation and custom software —
+            now we're bringing AI into every solution we build.
+          </p>
+          <p>
+            Based in Hawke's Bay, we work with businesses across NZ — from agriculture and manufacturing
+            to construction, hospitality, and professional services. We're not a big agency.
+            We're a focused team that builds things that actually work.
+          </p>
+          <p>
+            Our approach: understand your business first, then build technology that fits.
+            No template solutions. No unnecessary complexity. Just tools that save you
+            time and make you money.
+          </p>
+        </div>
+
+        <!-- Stats row -->
+        <div class="flex gap-10">
+          <div>
+            <div class="font-display font-bold text-3xl text-white">10+</div>
+            <div class="text-sm text-gray-500 mt-1">Years</div>
+          </div>
+          <div>
+            <div class="font-display font-bold text-3xl text-white">127+</div>
+            <div class="text-sm text-gray-500 mt-1">Clients</div>
+          </div>
+          <div>
+            <div class="font-display font-bold text-3xl text-white">85+</div>
+            <div class="text-sm text-gray-500 mt-1">Integrations</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Values -->
+      <div class="space-y-6" data-animate="right">
+        {values.map((v, i) => (
+          <div class="glass rounded-2xl p-6 hover-lift" style={`transition-delay: ${i * 100}ms;`}>
+            <div class="flex gap-4">
+              <div class="w-10 h-10 rounded-xl bg-kiwi-500/10 flex items-center justify-center text-kiwi-400 shrink-0 mt-0.5">
+                <Fragment set:html={v.icon} />
+              </div>
+              <div>
+                <h3 class="font-display font-semibold text-white mb-2">{v.title}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">{v.text}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        <!-- Tech stack badge area -->
+        <div class="glass rounded-2xl p-6">
+          <p class="text-xs font-mono text-gray-500 uppercase tracking-wider mb-4">Our Stack</p>
+          <div class="flex flex-wrap gap-2">
+            {['React', 'Next.js', 'Astro', 'Tailwind', 'Supabase', 'Cloudflare', 'Vercel', 'n8n', 'Claude AI', 'OpenAI', 'PostgreSQL', 'TypeScript'].map(t => (
+              <span class="px-3 py-1.5 text-xs font-medium text-gray-300 bg-white/5 rounded-lg border border-white/5 hover:border-kiwi-500/20 hover:text-kiwi-300 transition-all duration-300 cursor-default">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

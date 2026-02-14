@@ -1,0 +1,78 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Discover',
+    description: 'We sit down and understand your business. What works, what doesn\'t, where the opportunities are. No jargon, no upselling.',
+    detail: 'Stakeholder interviews, process mapping, pain point analysis',
+  },
+  {
+    num: '02',
+    title: 'Design',
+    description: 'Architecture and wireframes before a single line of code. We plan the system, define the data model, and align on scope.',
+    detail: 'Technical spec, UX design, data architecture, compliance review',
+  },
+  {
+    num: '03',
+    title: 'Build',
+    description: 'AI-accelerated development with human oversight. We ship iteratively — you see progress weekly, not monthly.',
+    detail: 'Sprint cycles, CI/CD pipeline, staging environment, weekly demos',
+  },
+  {
+    num: '04',
+    title: 'Deploy & Evolve',
+    description: 'Launch is just the beginning. We monitor, optimise, and evolve your system as your business grows.',
+    detail: 'Production deployment, monitoring, training, ongoing support',
+  },
+];
+---
+
+<section class="section-padding relative">
+  <div class="container-narrow">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-20" data-animate>
+      <p class="text-kiwi-400 font-mono text-sm tracking-wider uppercase mb-4">How We Work</p>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-6">
+        Systematic.<br />
+        <span class="gradient-text">Not chaotic.</span>
+      </h2>
+      <p class="text-gray-400 text-lg leading-relaxed">
+        Every project follows our proven process. Clear stages, constant communication, no surprises.
+      </p>
+    </div>
+
+    <!-- Process steps -->
+    <div class="relative">
+      {/* Connecting line */}
+      <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-kiwi-500/20 via-kiwi-500/10 to-transparent"></div>
+
+      <div class="space-y-8 lg:space-y-0">
+        {steps.map((step, i) => (
+          <div
+            class={`lg:grid lg:grid-cols-2 lg:gap-16 items-center ${i > 0 ? 'lg:mt-4' : ''}`}
+            data-animate={i % 2 === 0 ? 'left' : 'right'}
+            style={`transition-delay: ${i * 150}ms;`}
+          >
+            <div class={`${i % 2 !== 0 ? 'lg:order-2' : ''} mb-6 lg:mb-0`}>
+              <div class="glass rounded-2xl p-8 relative overflow-hidden group hover-lift">
+                <div class="absolute top-4 right-4 font-display font-bold text-6xl text-white/[0.03] group-hover:text-kiwi-500/[0.06] transition-colors duration-500">
+                  {step.num}
+                </div>
+                <div class="relative">
+                  <div class="font-mono text-kiwi-400 text-sm mb-2">{step.num}</div>
+                  <h3 class="font-display font-bold text-2xl text-white mb-3">{step.title}</h3>
+                  <p class="text-gray-400 leading-relaxed mb-4">{step.description}</p>
+                  <p class="text-xs text-gray-600 font-mono">{step.detail}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class={`${i % 2 !== 0 ? 'lg:order-1' : ''} hidden lg:block`}>
+              {/* Spacer for alternating layout */}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

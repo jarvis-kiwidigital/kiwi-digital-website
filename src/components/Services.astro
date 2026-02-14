@@ -1,0 +1,79 @@
+---
+const services = [
+  {
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>`,
+    title: 'AI Integration',
+    description: 'Deploy intelligent agents, copilots, and automation that integrate directly into your existing workflows. Not bolt-on AI — built-in intelligence.',
+    features: ['Custom AI Agents', 'Process Automation', 'Intelligent Document Processing', 'Predictive Analytics'],
+  },
+  {
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>`,
+    title: 'Full-Stack Development',
+    description: 'Modern web applications built with Next.js, React, and Supabase. Offline-first PWAs, multi-tenant SaaS, and real-time systems.',
+    features: ['Next.js & React', 'Supabase Backend', 'Offline-First PWA', 'Multi-Tenant SaaS'],
+  },
+  {
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>`,
+    title: 'Workflow Automation',
+    description: 'Eliminate manual processes. We connect your systems, automate data flows, and build integrations that save hundreds of hours.',
+    features: ['System Integration', 'Data Pipeline Design', 'n8n & Custom Workflows', 'API Development'],
+  },
+  {
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" /></svg>`,
+    title: 'Cloud & Infrastructure',
+    description: 'Cloudflare, Vercel, and Supabase — deployed for performance, security, and scale. NZ compliance baked in from day one.',
+    features: ['Cloudflare Workers', 'Edge Deployment', 'CI/CD Pipelines', 'NZ Data Sovereignty'],
+  },
+];
+---
+
+<section id="services" class="section-padding relative">
+  <div class="absolute inset-0 dot-pattern opacity-30"></div>
+
+  <div class="container-narrow relative">
+    <!-- Section header -->
+    <div class="max-w-2xl mb-20" data-animate>
+      <p class="text-kiwi-400 font-mono text-sm tracking-wider uppercase mb-4">What We Do</p>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-6">
+        Technology that<br />
+        <span class="gradient-text">works for you</span>
+      </h2>
+      <p class="text-gray-400 text-lg leading-relaxed">
+        We don't just build software — we build systems that think, adapt, and deliver measurable results for your business.
+      </p>
+    </div>
+
+    <!-- Service cards -->
+    <div class="grid md:grid-cols-2 gap-6">
+      {services.map((service, i) => (
+        <div
+          class="group glass rounded-2xl p-8 hover-lift relative overflow-hidden"
+          data-animate
+          style={`transition-delay: ${i * 100}ms;`}
+        >
+          <!-- Hover gradient -->
+          <div class="absolute inset-0 bg-gradient-to-br from-kiwi-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <div class="relative">
+            <!-- Icon -->
+            <div class="w-12 h-12 rounded-xl bg-kiwi-500/10 flex items-center justify-center text-kiwi-400 mb-6 group-hover:bg-kiwi-500/20 transition-colors duration-300">
+              <Fragment set:html={service.icon} />
+            </div>
+
+            <h3 class="font-display font-semibold text-xl text-white mb-3">{service.title}</h3>
+            <p class="text-gray-400 leading-relaxed mb-6">{service.description}</p>
+
+            <!-- Features -->
+            <div class="flex flex-wrap gap-2">
+              {service.features.map(f => (
+                <span class="px-3 py-1 text-xs font-medium text-kiwi-300/80 bg-kiwi-500/8 rounded-full border border-kiwi-500/10">
+                  {f}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
