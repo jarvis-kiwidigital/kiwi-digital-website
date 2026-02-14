@@ -1,6 +1,33 @@
 ---
 const projects = [
   {
+    title: 'Clockie',
+    category: 'Time & Attendance SaaS',
+    description: 'Simple, affordable time tracking for SMBs worldwide. Clock in/out, GPS verification, payroll integration, and leave management. Built with modern AI-powered tools for rapid deployment.',
+    tags: ['SaaS', 'PWA', 'Multi-Tenant', 'Loveable.dev'],
+    gradient: 'from-kiwi-500 to-emerald-500',
+    accent: 'text-kiwi-400',
+    tagStyle: 'text-kiwi-300/80 bg-kiwi-500/8 border-kiwi-500/10',
+    link: 'https://clockie.nz',
+    status: 'Live',
+    image: '/projects/clockie-hero.png',
+    featured: true,
+    pricing: '$2-3 per staff/month',
+  },
+  {
+    title: 'SafePing',
+    category: 'Lone Worker Safety',
+    description: 'Keep remote workers safe with automated check-ins, panic button, and escalation workflows. Progressive Web App works offline-first. Built for health & safety compliance in high-risk industries.',
+    tags: ['PWA', 'Offline-First', 'Real-time', 'Safety Compliance'],
+    gradient: 'from-orange-500 to-red-500',
+    accent: 'text-orange-400',
+    tagStyle: 'text-orange-300/80 bg-orange-500/8 border-orange-500/10',
+    link: 'https://safeping.app',
+    status: 'Live',
+    image: '/projects/safeping-hero.png',
+    featured: true,
+  },
+  {
     title: 'SkyGrid Mission Hub',
     category: 'Drone Operations',
     description: 'Multi-portal platform for autonomous drone inspection. Real-time fleet management, CAA compliance, and client dashboards for NZ infrastructure operators.',
@@ -10,28 +37,7 @@ const projects = [
     tagStyle: 'text-blue-300/80 bg-blue-500/8 border-blue-500/10',
     link: 'https://skygrid.co.nz',
     status: 'Live',
-  },
-  {
-    title: 'Clockie',
-    category: 'Time & Attendance SaaS',
-    description: 'Clock in/out platform for NZ SMBs. Payroll integration, GPS verification, leave management — built for NZ employment law compliance.',
-    tags: ['SaaS', 'PWA', 'Multi-Tenant', 'NZ Compliance'],
-    gradient: 'from-kiwi-500 to-emerald-500',
-    accent: 'text-kiwi-400',
-    tagStyle: 'text-kiwi-300/80 bg-kiwi-500/8 border-kiwi-500/10',
-    link: null,
-    status: 'Beta',
-  },
-  {
-    title: 'SafePing',
-    category: 'Lone Worker Safety',
-    description: 'Safety check-in PWA for remote workers. Timed check-ins, panic button, automated escalation — meeting NZ H&S obligations.',
-    tags: ['PWA', 'Offline-First', 'Real-time', 'Safety'],
-    gradient: 'from-orange-500 to-red-500',
-    accent: 'text-orange-400',
-    tagStyle: 'text-orange-300/80 bg-orange-500/8 border-orange-500/10',
-    link: null,
-    status: 'Beta',
+    featured: false,
   },
   {
     title: 'Melita Honey Blending',
@@ -43,6 +49,7 @@ const projects = [
     tagStyle: 'text-amber-300/80 bg-amber-500/8 border-amber-500/10',
     link: 'https://melitahoney.com',
     status: 'Live',
+    featured: false,
   },
   {
     title: 'Insight Equity',
@@ -54,6 +61,7 @@ const projects = [
     tagStyle: 'text-violet-300/80 bg-violet-500/8 border-violet-500/10',
     link: 'https://insightequity.co.nz',
     status: 'Live',
+    featured: false,
   },
   {
     title: 'WOW Tents CRM',
@@ -65,8 +73,12 @@ const projects = [
     tagStyle: 'text-gray-300/80 bg-gray-500/8 border-gray-500/10',
     link: 'https://wowtents.co',
     status: 'Live',
+    featured: false,
   },
 ];
+
+const featuredProjects = projects.filter(p => p.featured);
+const otherProjects = projects.filter(p => !p.featured);
 ---
 
 <section id="work" class="section-padding relative">
@@ -80,24 +92,107 @@ const projects = [
         </h2>
       </div>
       <p class="text-gray-400 max-w-md leading-relaxed">
-        From drone ops to honey blending — we build what NZ businesses actually need. Not templates. Solutions.
+        From SaaS platforms to custom tools — we build what businesses globally actually need. Not templates. Solutions.
       </p>
     </div>
 
-    <!-- Project grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {projects.map((project, i) => (
+    <!-- Featured Projects (Large Cards) -->
+    <div class="grid lg:grid-cols-2 gap-6 mb-6">
+      {featuredProjects.map((project, i) => (
         <div
           class="group glass rounded-2xl overflow-hidden spotlight border-glow hover-lift flex flex-col"
           data-animate
-          style={`transition-delay: ${i * 80}ms;`}
+          style={`transition-delay: ${i * 100}ms;`}
         >
+          {/* Project Image */}
+          {project.image && (
+            <div class="relative h-64 overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+              <img 
+                src={project.image} 
+                alt={project.title}
+                class="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent"></div>
+              
+              {/* Status badge on image */}
+              <div class="absolute top-4 right-4">
+                <span class={`px-3 py-1 text-xs font-mono rounded-full border backdrop-blur-sm ${project.tagStyle} bg-gray-900/60`}>
+                  {project.status}
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* Gradient header */}
           <div class={`h-1 bg-gradient-to-r ${project.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}></div>
 
           <div class="p-6 flex-1 flex flex-col">
             {/* Top row */}
-            <div class="flex items-start justify-between mb-4">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex-1">
+                <p class={`text-xs font-mono tracking-wider uppercase mb-2 ${project.accent}`}>
+                  {project.category}
+                </p>
+                <h3 class="font-display font-semibold text-2xl text-white group-hover:text-kiwi-300 transition-colors duration-300">
+                  {project.title}
+                </h3>
+              </div>
+            </div>
+
+            {/* Description */}
+            <p class="text-gray-400 leading-relaxed mb-5 flex-1">
+              {project.description}
+            </p>
+
+            {/* Pricing if available */}
+            {project.pricing && (
+              <div class="mb-4 px-3 py-2 rounded-lg bg-kiwi-500/5 border border-kiwi-500/10 inline-block">
+                <span class="text-sm font-medium text-kiwi-300">{project.pricing}</span>
+              </div>
+            )}
+
+            {/* Tags */}
+            <div class="flex flex-wrap gap-2 mb-5">
+              {project.tags.map(tag => (
+                <span class={`px-2.5 py-1 text-xs font-medium rounded-full border ${project.tagStyle}`}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Link */}
+            {project.link && (
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener" 
+                class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-kiwi-400 transition-colors duration-300 mt-auto pt-4 border-t border-white/5 group/link"
+              >
+                <span>Visit {project.link.replace('https://', '')}</span>
+                <svg class="w-4 h-4 opacity-50 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Other Projects (Compact Grid) -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      {otherProjects.map((project, i) => (
+        <div
+          class="group glass rounded-2xl overflow-hidden spotlight border-glow hover-lift flex flex-col"
+          data-animate
+          style={`transition-delay: ${(featuredProjects.length + i) * 80}ms;`}
+        >
+          {/* Gradient header */}
+          <div class={`h-1 bg-gradient-to-r ${project.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}></div>
+
+          <div class="p-5 flex-1 flex flex-col">
+            {/* Top row */}
+            <div class="flex items-start justify-between mb-3">
               <div>
                 <p class={`text-[10px] font-mono tracking-wider uppercase mb-1 ${project.accent}`}>
                   {project.category}
@@ -112,7 +207,7 @@ const projects = [
             </div>
 
             {/* Description */}
-            <p class="text-gray-400 text-sm leading-relaxed mb-5 flex-1">
+            <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-1">
               {project.description}
             </p>
 
