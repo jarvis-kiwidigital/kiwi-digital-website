@@ -1,0 +1,73 @@
+---
+const faqs = [
+  {
+    q: 'How much does a typical project cost?',
+    a: "It depends on scope, but most of our projects range from $5K–$50K NZD. We'll give you a clear quote after the discovery phase — no surprises. We also offer ongoing retainer arrangements for continuous development and support.",
+  },
+  {
+    q: "We're not a tech company. Can you still help us?",
+    a: "Absolutely — that's our specialty. Most of our clients are in agriculture, construction, hospitality, and trades. We translate business problems into technology solutions. You don't need to know how it works — just what you need it to do.",
+  },
+  {
+    q: 'What does "AI integration" actually mean for my business?',
+    a: "It means using AI to do things your team currently does manually — processing emails, classifying documents, generating reports, answering customer queries, analysing data. We build these into your existing tools so it feels natural, not like learning a new system.",
+  },
+  {
+    q: 'How long does a project typically take?',
+    a: "MVPs in 4-6 weeks. Full production applications in 2-4 months. We ship iteratively, so you see working software from week one — not a big reveal at the end. AI-assisted development means we move significantly faster than traditional agencies.",
+  },
+  {
+    q: 'Do you only work with NZ businesses?',
+    a: "We're based in Hawke's Bay and most of our clients are in New Zealand, but we work with businesses internationally too. Our tools and processes are built for remote collaboration.",
+  },
+  {
+    q: 'What happens after launch?',
+    a: "We don't disappear. Every project includes a handover period, documentation, and training. We offer ongoing support and development retainers for clients who want continuous improvement. Most of our clients stick around.",
+  },
+];
+---
+
+<section class="section-padding relative">
+  <div class="container-narrow">
+    <div class="text-center max-w-2xl mx-auto mb-16" data-animate>
+      <p class="text-kiwi-400 font-mono text-sm tracking-wider uppercase mb-4">FAQ</p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white leading-tight">
+        Common questions
+      </h2>
+    </div>
+
+    <div class="max-w-3xl mx-auto space-y-3">
+      {faqs.map((faq, i) => (
+        <details
+          class="group glass rounded-xl overflow-hidden"
+          data-animate
+          style={`transition-delay: ${i * 60}ms;`}
+        >
+          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none hover:bg-white/[0.02] transition-colors">
+            <span class="font-medium text-white text-sm pr-4">{faq.q}</span>
+            <svg class="w-4 h-4 text-gray-500 shrink-0 group-open:rotate-45 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-4">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Structured data for FAQ (SEO) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": f.a,
+        }
+      }))
+    })} />
+  </div>
+</section>

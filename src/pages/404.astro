@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="404 — Page Not Found | Kiwi Digital">
+  <Nav />
+  <main class="min-h-screen flex items-center justify-center">
+    <div class="text-center px-6">
+      <div class="font-display font-bold text-[120px] md:text-[180px] leading-none gradient-text opacity-20 mb-4 select-none">404</div>
+      <h1 class="font-display font-bold text-3xl md:text-4xl text-white mb-4 -mt-12">Page not found</h1>
+      <p class="text-gray-400 mb-8 max-w-md mx-auto">
+        Looks like this page doesn't exist. It might have been moved, or you might have a typo in the URL.
+      </p>
+      <a href="/" class="btn-primary">
+        Back to Home
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Layout>

@@ -2,11 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
+import LogoCloud from '../components/LogoCloud.astro';
 import Services from '../components/Services.astro';
+import WhyAI from '../components/WhyAI.astro';
 import Projects from '../components/Projects.astro';
 import About from '../components/About.astro';
 import Process from '../components/Process.astro';
 import Testimonial from '../components/Testimonial.astro';
+import FAQ from '../components/FAQ.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -15,14 +18,17 @@ import Footer from '../components/Footer.astro';
   <Nav />
   <main>
     <Hero />
-    <div class="glow-line"></div>
+    <LogoCloud />
     <Services />
+    <div class="glow-line"></div>
+    <WhyAI />
     <Testimonial />
+    <div class="glow-line"></div>
     <Projects />
-    <div class="glow-line"></div>
     <Process />
-    <About />
     <div class="glow-line"></div>
+    <About />
+    <FAQ />
     <Contact />
   </main>
   <Footer />

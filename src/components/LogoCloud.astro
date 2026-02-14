@@ -1,0 +1,30 @@
+---
+// Technology partners + platforms we build with
+const logos = [
+  { name: 'Supabase', icon: '◆' },
+  { name: 'Cloudflare', icon: '☁' },
+  { name: 'Vercel', icon: '▲' },
+  { name: 'OpenAI', icon: '◎' },
+  { name: 'Anthropic', icon: '◈' },
+  { name: 'React', icon: '⚛' },
+  { name: 'Next.js', icon: 'N' },
+  { name: 'PostgreSQL', icon: '🐘' },
+];
+---
+
+<section class="py-20 relative border-y border-white/[0.04]">
+  <div class="container-narrow">
+    <p class="text-center text-xs font-mono text-gray-600 uppercase tracking-[0.2em] mb-10">
+      Powered by the tools we trust
+    </p>
+
+    <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
+      {logos.map((logo) => (
+        <div class="flex items-center gap-2 text-gray-500 hover:text-gray-300 transition-colors duration-300 cursor-default group">
+          <span class="text-lg opacity-50 group-hover:opacity-80 transition-opacity">{logo.icon}</span>
+          <span class="font-display font-medium text-sm tracking-wide">{logo.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
