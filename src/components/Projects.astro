@@ -10,7 +10,7 @@ const projects = [
     tagStyle: 'text-kiwi-300/80 bg-kiwi-500/8 border-kiwi-500/10',
     link: 'https://clockie.nz',
     status: 'Live',
-    image: '/projects/clockie-hero.png',
+    images: ['/projects/clockie-hero.png', '/projects/clockie-features.png', '/projects/clockie-dashboard.png'],
     featured: true,
     pricing: '$2-3 per staff/month',
   },
@@ -24,7 +24,7 @@ const projects = [
     tagStyle: 'text-orange-300/80 bg-orange-500/8 border-orange-500/10',
     link: 'https://safeping.app',
     status: 'Live',
-    image: '/projects/safeping-hero.png',
+    images: ['/projects/safeping-hero.png', '/projects/safeping-features.png', '/projects/safeping-mobile.png'],
     featured: true,
   },
   {
@@ -104,22 +104,51 @@ const otherProjects = projects.filter(p => !p.featured);
           data-animate
           style={`transition-delay: ${i * 100}ms;`}
         >
-          {/* Project Image */}
-          {project.image && (
+          {/* Project Image Carousel */}
+          {project.images && project.images.length > 0 && (
             <div class="relative h-64 overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                class="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent"></div>
+              <div class="project-carousel flex h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide" data-carousel>
+                {project.images.map((img: string, imgIdx: number) => (
+                  <div class="flex-none w-full h-full snap-center relative">
+                    <img 
+                      src={img} 
+                      alt={`${project.title} screenshot ${imgIdx + 1}`}
+                      class="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                      loading={imgIdx === 0 ? 'eager' : 'lazy'}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent pointer-events-none"></div>
               
-              {/* Status badge on image */}
-              <div class="absolute top-4 right-4">
+              {/* Dot indicators */}
+              {project.images.length > 1 && (
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                  {project.images.map((_: string, dotIdx: number) => (
+                    <button 
+                      class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/40 transition-all duration-300 hover:bg-white/80"
+                      data-slide={dotIdx}
+                      aria-label={`View screenshot ${dotIdx + 1}`}
+                    ></button>
+                  ))}
+                </div>
+              )}
+
+              {/* Status badge */}
+              <div class="absolute top-4 right-4 z-10">
                 <span class={`px-3 py-1 text-xs font-mono rounded-full border backdrop-blur-sm ${project.tagStyle} bg-gray-900/60`}>
                   {project.status}
                 </span>
               </div>
+
+              {/* Swipe hint */}
+              {project.images.length > 1 && (
+                <div class="absolute top-4 left-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="px-2 py-1 text-[10px] font-mono text-white/50 bg-gray-900/60 backdrop-blur-sm rounded-full">
+                    ← swipe →
+                  </span>
+                </div>
+              )}
             </div>
           )}
 
@@ -235,3 +264,30 @@ const otherProjects = projects.filter(p => !p.featured);
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const dots = carousel.closest('.relative')?.querySelectorAll('.carousel-dot');
+    if (!dots?.length) return;
+
+    // Set first dot active
+    dots[0]?.classList.add('active');
+
+    // Update dots on scroll
+    carousel.addEventListener('scroll', () => {
+      const scrollLeft = carousel.scrollLeft;
+      const width = carousel.clientWidth;
+      const activeIdx = Math.round(scrollLeft / width);
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeIdx);
+      });
+    }, { passive: true });
+
+    // Click dot to scroll
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        carousel.scrollTo({ left: i * carousel.clientWidth, behavior: 'smooth' });
+      });
+    });
+  });
+</script>

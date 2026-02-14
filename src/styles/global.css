@@ -104,6 +104,20 @@
     background-size: 60px 60px;
   }
 
+  /* Hide scrollbar for carousel */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Active carousel dot */
+  .carousel-dot.active {
+    @apply bg-white/90 w-3;
+  }
+
   /* Dot pattern */
   .dot-pattern {
     background-image: radial-gradient(rgba(78, 205, 196, 0.12) 1px, transparent 1px);
