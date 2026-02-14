@@ -1,30 +1,40 @@
 ---
-// Technology partners + platforms we build with
-const logos = [
-  { name: 'Supabase', icon: '◆' },
-  { name: 'Cloudflare', icon: '☁' },
-  { name: 'Vercel', icon: '▲' },
-  { name: 'OpenAI', icon: '◎' },
-  { name: 'Anthropic', icon: '◈' },
-  { name: 'React', icon: '⚛' },
-  { name: 'Next.js', icon: 'N' },
-  { name: 'PostgreSQL', icon: '🐘' },
+// Technology partners we work with — brands businesses recognize and trust
+const partners = [
+  { name: 'Xero', subtitle: 'Gold Partner' },
+  { name: 'Podio', subtitle: 'Implementation' },
+  { name: 'Progress', subtitle: 'Technology' },
+  { name: 'Digital Ocean', subtitle: 'Cloud Hosting' },
+  { name: 'Cloudflare', subtitle: 'Security & CDN' },
+  { name: 'Google', subtitle: 'Workspace & Cloud' },
 ];
 ---
 
 <section class="py-20 relative border-y border-white/[0.04]">
   <div class="container-narrow">
-    <p class="text-center text-xs font-mono text-gray-600 uppercase tracking-[0.2em] mb-10">
-      Powered by the tools we trust
+    <p class="text-center text-xs font-mono text-gray-600 uppercase tracking-[0.2em] mb-4">
+      Our Partners
+    </p>
+    <p class="text-center text-sm text-gray-500 mb-12 max-w-xl mx-auto">
+      We partner with trusted technology providers to deliver secure, reliable solutions
     </p>
 
-    <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-      {logos.map((logo) => (
-        <div class="flex items-center gap-2 text-gray-500 hover:text-gray-300 transition-colors duration-300 cursor-default group">
-          <span class="text-lg opacity-50 group-hover:opacity-80 transition-opacity">{logo.icon}</span>
-          <span class="font-display font-medium text-sm tracking-wide">{logo.name}</span>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+      {partners.map((partner) => (
+        <div class="flex flex-col items-center gap-2 text-center group cursor-default">
+          <div class="text-gray-400 group-hover:text-gray-200 transition-colors duration-300">
+            <div class="font-display font-semibold text-lg tracking-wide">{partner.name}</div>
+            <div class="text-[10px] text-gray-600 font-mono mt-1">{partner.subtitle}</div>
+          </div>
         </div>
       ))}
+    </div>
+
+    <div class="mt-16 text-center">
+      <p class="text-xs text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        Xero Gold Partner · Certified Podio Implementer · Trusted by businesses across agriculture, construction, 
+        hospitality, manufacturing, and professional services
+      </p>
     </div>
   </div>
 </section>
