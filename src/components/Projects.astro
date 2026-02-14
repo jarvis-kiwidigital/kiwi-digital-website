@@ -53,15 +53,16 @@ const projects = [
   },
   {
     title: 'Insight Equity',
-    category: 'Building Audit Platform',
-    description: 'Mobile-first building audit app. Offline photo capture, automated report generation, and client portal for real-time tracking.',
-    tags: ['PWA', 'Offline-First', 'Report Gen'],
+    category: 'Asset Inspection & Reporting',
+    description: 'Full-stack property management platform for commercial property investors. Asset inspection tools, automated report generation via MyReports portal, financial analytics, and real-time performance metrics. Client-facing dashboards with comprehensive portfolio insights.',
+    tags: ['Next.js', 'Client Portal', 'Report Gen', 'Analytics'],
     gradient: 'from-violet-500 to-purple-500',
     accent: 'text-violet-400',
     tagStyle: 'text-violet-300/80 bg-violet-500/8 border-violet-500/10',
     link: 'https://insightequity.co.nz',
     status: 'Live',
-    featured: false,
+    images: ['/projects/insightequity-hero.png', '/projects/myreports-login.png', '/projects/insightequity-about.png'],
+    featured: true,
   },
   {
     title: 'WOW Tents CRM',
@@ -97,7 +98,7 @@ const otherProjects = projects.filter(p => !p.featured);
     </div>
 
     <!-- Featured Projects (Large Cards) -->
-    <div class="grid lg:grid-cols-2 gap-6 mb-6">
+    <div class="grid lg:grid-cols-3 gap-6 mb-6">
       {featuredProjects.map((project, i) => (
         <div
           class="group glass rounded-2xl overflow-hidden spotlight border-glow hover-lift flex flex-col"
@@ -209,7 +210,7 @@ const otherProjects = projects.filter(p => !p.featured);
     </div>
 
     <!-- Other Projects (Compact Grid) -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div class="grid md:grid-cols-3 gap-5">
       {otherProjects.map((project, i) => (
         <div
           class="group glass rounded-2xl overflow-hidden spotlight border-glow hover-lift flex flex-col"
